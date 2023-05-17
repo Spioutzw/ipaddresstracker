@@ -34,6 +34,11 @@ const SearchBar = () => {
         fullWidth
         value={search}
         onChange={(e) => setSearch(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            handleSearch();
+          }
+        }}
         placeholder="Search for any IP address or domain"
         InputProps={{
           style: {
