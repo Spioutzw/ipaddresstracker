@@ -1,12 +1,16 @@
 'use client'
+import dynamic from 'next/dynamic';
 
-import Image from 'next/image'
 import styles from './page.module.css'
 import SearchBar from './components/SearchBar/SearchBar'
-import Map from './components/Map/Map'
 import SearchContext from './context/SearchContext'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import Result from './components/Result/Result'
+
+const MapWithNoSSR = dynamic(
+  () => import('./components/Map/Map'),
+  { ssr: false }
+);
 
 export default function Home() {
 
@@ -23,7 +27,7 @@ export default function Home() {
         </div>
           <Result />
         <div id='map' className={styles.map}>
-          <Map />
+          <MapWithNoSSR />
         </div>
       </main>
     </SearchContext.Provider>
