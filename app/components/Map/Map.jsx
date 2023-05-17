@@ -2,8 +2,7 @@
 
 import { useContext, useEffect, useState } from 'react'
 import "leaflet/dist/leaflet.css"
-import {icon} from 'leaflet'
-import { Marker, Popup } from 'react-leaflet'
+import { Marker} from 'react-leaflet'
 import { MapContainer } from 'react-leaflet/MapContainer'
 import { TileLayer } from 'react-leaflet/TileLayer'
 import { useMap } from 'react-leaflet/hooks'
@@ -29,21 +28,10 @@ const Map = () => {
 
     const [ip, setIp] = useState()
     const { searchInfo, setSearchInfo } = useContext(SearchContext)
-    const [map,setMap] = useState(null)
-
-    console.log(ip)
-
-    const ICON = icon({
-        iconUrl: '/public/broche.png',
-        iconSize: [46, 56],
-        iconAnchor: [23, 56],
-        popupAnchor: [0, -56],
-    })
 
     useEffect(() => {
         axios.get(`https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.NEXT_PUBLIC_GEO_API_KEY}&ipAddress=`)
             .then(res => {
-                console.log(res.data)
                 const data = res.data;
                 setIp(data);
                 setSearchInfo(data);

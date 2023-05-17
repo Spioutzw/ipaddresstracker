@@ -18,11 +18,8 @@ const Result = () => {
       const mapRect = map.getBoundingClientRect();
       const jointureY = (containerRect.bottom + mapRect.top) / 2;
       result.style.top = `${jointureY}px`;
-      console.log('jointureY', jointureY);
     }
-    console.log('result', result);
-    console.log('map', map);
-    console.log('container', container);
+    
 
   }, []);
 
