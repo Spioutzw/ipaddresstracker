@@ -1,8 +1,29 @@
 .map {
-    height: 250px
+    height: 190px;
+    z-index: 1;
+    flex-grow: 1;
 }
 
 .main {
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    position: relative;
+}
+
+.title {
+    color: white;
+    font-size: var(--typosize);
+}
+
+.container {
+    background-image: url('../public/pattern-bg-mobile.png');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 250px;
+}
+
+.container > * {
+    margin: 10px;
 }

@@ -23,9 +23,6 @@ a {
   text-decoration: none;
 }
 
-#map {
-  height: 250px;
-}
 
 .leaflet-container {
   height: 100%;

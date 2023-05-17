@@ -1,4 +1,3 @@
-import Script from 'next/script'
 import './globals.css'
 import { Rubik } from 'next/font/google'
 
