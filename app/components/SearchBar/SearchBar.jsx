@@ -14,13 +14,16 @@ const SearchBar = () => {
   const [search, setSearch] = useState('')
 
   const handleSearch = () => {
-    const ipRegex = new RegExp('^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$');
-    if (search && (ipRegex.test(search))) {
-      axios.get(`https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.NEXT_PUBLIC_GEO_API_KEY}&ipAddress=${search}`)
-        .then(res => {
-          const data = res.data;
-          setSearchInfo(data);
-        })
+    const ipv4Regex = /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+    const ipv6Regex = /^([0-9a-fA-F]{1,4}:){7}([0-9a-fA-F]){1,4}$/;
+    if (search && (ipv4Regex.test(search) || ipv6Regex.test(search))) {
+        axios.get(`https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.NEXT_PUBLIC_GEO_API_KEY}&ipAddress=${search}`)
+            .then(res => {
+                const data = res.data;
+                setSearchInfo(data);
+            }).catch(err => {
+                window.alert(err.response.data.messages);
+            })
     } else {
       window.alert('Please enter a valid IP address');
     }
